@@ -1,23 +1,21 @@
-import Image from "next/image";
-import ImageWrapper from "@/components/ImageWrapper/ImageWrapper";
-import { getCldImageUrl } from "next-cloudinary";
+import Link from "next/link";
 
 export default async function Home() {
-  const url = getCldImageUrl({
-    src: "https://res.cloudinary.com/immagina/image/upload/v1714049484/IMMAGINA/Portfolio/Fotografia/Teatro/Slava/05_qwhe5r.webp",
-    blur: 2000,
-  });
-  const response = await fetch(url);
-  const arrayBuffer = await response.arrayBuffer();
-  const buffer = Buffer.from(arrayBuffer);
-  const base64 = buffer.toString("base64");
-  const dataUrl = `data:${response.type};base64,${base64}`;
-
   return (
-    <div className="h-screen flex">
-      <div className="w-[1200px] h-[800px] bg-red-200 m-auto relative">
-        <ImageWrapper dataUrl={dataUrl} />
+    <>
+      <div className="border-white border-2 m-auto p-8 w-[400px]">
+        <ul>
+          <li className="p-4 hover:text-red-400">
+            <Link href={"/cloudinary-next"}>1. Next Cloudinary PlugIn</Link>
+          </li>
+          <li className="p-4 hover:text-red-400">
+            <Link href={"/next-image"}>2. Next Image Fill</Link>
+          </li>
+          <li className="p-4 hover:text-red-400">
+            <Link href={"/next-image-wh"}>3. Next Image Width Height</Link>
+          </li>
+        </ul>
       </div>
-    </div>
+    </>
   );
 }
